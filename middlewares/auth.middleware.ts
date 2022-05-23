@@ -47,29 +47,14 @@ const verifyTokenAndAdmin = (
     });
   }
 
-  // try {
-  //   const jwtAccessToken = env.JWT_ACCESS_KEY;
-  //   const decoded = jwt.verify(token, jwtAccessToken);
-  //   if (decoded.role === "admin" ) {
-  //     next();
-  //   } else {
-  //     res.json("You are not allowed to do that");
-  //   }
-  // } catch (error) {
-  //   return res.json({
-  //     success: false,
-  //     message: "Invalid Token",
-  //   });
-  // }
   try {
     const jwtAccessToken = env.JWT_ACCESS_KEY;
-    jwt.verify(token, jwtAccessToken, (err: Error, decoded: any) => {
-      if (err) {
-        return res.json("Internal Server Error");
-      } else {
-        if ((res.locals.jwt = decoded && decoded.role === "admin")) next();
-      }
-    });
+    const decoded = jwt.verify(token, jwtAccessToken);
+    if (decoded.role === "admin") {
+      next();
+    } else {
+      res.json("You are not allowed to do that");
+    }
   } catch (error) {
     return res.json({
       success: false,

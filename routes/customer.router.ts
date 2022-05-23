@@ -28,7 +28,7 @@ router.post("/customer", verifyToken, customerController.createCustomer);
 // Find all customers
 router.get(
   "/customer",
-  verifyTokenAndAuthorization,
+  verifyTokenAndAdmin,
   customerController.findAllUser
 );
 
