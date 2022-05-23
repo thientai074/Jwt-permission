@@ -1,0 +1,84 @@
+POST  http://localhost:4000/api/user
+Content-Type: application/json
+
+{
+    "email": "Nam1",
+    "password": "Nam1",
+    "name": "Nam1"
+}
+
+###
+POST  http://localhost:4000/api/login
+Content-Type: application/json
+
+{
+    "email": "Nam",
+    "password": "Nam"
+}
+
+###
+GET http://localhost:4000/api/get
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODM0ODE4ODI1YzliZjZmODI3MGIwYyIsImlhdCI6MTY1Mjc3NDc1MSwiZXhwIjoxNjUyNzc1NjUxfQ.1tjdTnwiI1MxKJ4xauRwR4ymTmIszH2NHvyKcq4DR0s
+
+###
+DELETE  http://localhost:4000/api/user/62847e8c71ad96fa48dcbd67
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODQ3ZThjNzFhZDk2ZmE0OGRjYmQ2NyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjUyODUwNTI5fQ.94u9y5_QnEr5AGV25tz6SqgZdVQFHU9fZOTkqt_3PUg
+
+###
+PUT http://localhost:4000/api/user/6285a55adbc333d1f2fceed3
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODVhNTVhZGJjMzMzZDFmMmZjZWVkMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjUyOTI1ODQ1LCJleHAiOjE2NTMwMTIyNDV9.5RmI2FUhyVkWGF4KUVIxGFnsXVjXEZL94likC6Zs-bY
+{
+    "email": "Ha",
+    "name": "Ha"
+}
+
+###
+POST  http://localhost:4000/api/alo
+Content-Type: application/json
+
+{
+    "title": "a",
+    "content": "a"
+}
+
+###
+GET http://localhost:4000/api/user/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGFlMDRjZWMxMDAzNzk4Y2IzNjA0OSIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiTmFtIiwiaWF0IjoxNjUzMjY4ODk0LCJleHAiOjE2NTMzNTUyOTR9.wmx3v7Vb5vD36QBnqoeNAreGYvyw3MJZ5Ww5muTfC3M
+
+###
+PUT http://localhost:4000/api/user/62847faa7dd04b76b0bc4897
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODQ3ZmFhN2RkMDRiNzZiMGJjNDg5NyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjUyODUwOTY0fQ.SwpcWnyD1-5FR-NssdJj8wNaESc-NPyc2iZgYMgSd0Q
+
+{
+     "email": "Ha",
+    "name": "Ha"
+}
+
+###
+POST http://localhost:4000/api/customer
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODVjYjg1N2YzYTYyNmE0ZDdlYzFkYyIsInJvbGUiOiJ1c2VyIiwiZW1haWwiOiJIYXkiLCJpYXQiOjE2NTI5MzU1NjIsImV4cCI6MTY1MzAyMTk2Mn0.vraaf2SN6xSfd9UyCcj-1jLkMRG_5fW5nYDtM7-bvLc
+
+{
+    "fullname": "alo6",
+    "phone": "09766466868"  
+}
+
+###
+GET http://localhost:4000/api/customer
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODVkMDBkNWZmYmJhMTAxNjU1OWI1NCIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW4iLCJpYXQiOjE2NTI5MzY3NTMsImV4cCI6MTY1MzAyMzE1M30.lDvxrBeW1KyJOk3MdxHJkpNM71SQJlnXcEsg79qb50E
+###
+delete http://localhost:4000/api/customer/6285cc04b3befa2069a1daf7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODVjYjg1N2YzYTYyNmE0ZDdlYzFkYyIsInJvbGUiOiJ1c2VyIiwiZW1haWwiOiJIYXkiLCJpYXQiOjE2NTI5MzY4ODUsImV4cCI6MTY1MzAyMzI4NX0.8jN8TcA8aYR0m3SUQK9cpRDgoyekYnJkl5w4m2MEiT8
+###
+PUT http://localhost:4000/api/customer/6285a476c1a243d74a3751e5
+Content-Type: application/json;
+
+{
+    "fullname": "Trafenf Van Do",
+   
+    "phone": "099888589988"
+    
+}
