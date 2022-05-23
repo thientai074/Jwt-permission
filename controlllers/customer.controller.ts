@@ -1,61 +1,82 @@
 import { Request, Response } from "express";
 import { Customer } from "../models/customer.model";
+import CustomerService from "../services/customer.service";
 
 class customerController {
   // create customer
   async createCustomer(req: Request, res: Response) {
     try {
-      if (res.locals.jwt) {
-        const newCustomer = await new Customer({
-          fullname: req.body.fullname,
-          user: res.locals.jwt.id,
-          email: req.body.email,
-          phone: req.body.phone,
-        });
-        const savedCustomer = await newCustomer.save();
-        res.json(savedCustomer);
-      } else {
-        return res.json("Has not logged in yet !!!");
+      const { phone } = req.body;
+      const decoded = res.locals.jwt;
+      if (!decoded) {
+        return res.json({ success: false, message: "You have to login" });
       }
+
+      const newCustomer = await CustomerService.create(decoded, phone);
+      res.json({
+        success: true,
+        newCustomer,
+        message: "Created customer successfully",
+      });
     } catch (error) {
-      res.json(error);
+      return res.json({
+        success: false,
+        message: error,
+      });
     }
   }
 
   // find all customers
   async findAllUser(req: Request, res: Response) {
-    console.log(res.locals.jwt.email);
     try {
-      const customers = await Customer.find();
-      res.json(customers);
-    } catch (error) {
-      res.json(error);
+      const customers = await CustomerService.findAllCustomers();
+      res.json({
+        success: true,
+        customers,
+        message: "Getted all customers successfully",
+      });
+    } catch (error: any) {
+      return res.json({
+        success: false,
+        message: error.message,
+      });
     }
   }
 
   // delete customer
   async deleteCustomer(req: Request, res: Response) {
     try {
-      await Customer.findByIdAndDelete(req.params.id);
-      res.json("This Customer has been deleted !!!");
+      const userId = req.params.id;
+      const deletedCustomer = await CustomerService.delete(userId);
+      res.json({
+        success: true,
+        deletedCustomer,
+        message: "This Customer has been deleted !!!",
+      });
     } catch (error) {
-      res.json(error);
+      return res.json({
+        success: false,
+        message: error,
+      });
     }
   }
 
   // Update Customer
   async updateCustomer(req: Request, res: Response) {
     try {
-      const updatedCustomer = await Customer.findByIdAndUpdate(
-        req.params.id,
-        {
-          $set: req.body,
-        },
-        { new: true }
-      );
-      res.json(updatedCustomer);
+      const body = req.body;
+      const userId = req.params.id;
+      const updatedCustomer = await CustomerService.update(userId, body);
+      res.json({
+        success: true,
+        updatedCustomer,
+        message: "Updated customer successfully",
+      });
     } catch (error) {
-      res.json(error);
+      return res.json({
+        success: false,
+        message: error,
+      });
     }
   }
 }

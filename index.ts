@@ -3,26 +3,28 @@ import express from "express";
 import mongoose from "mongoose";
 import authRouter from "./routes/auth.route";
 import userRouter from "./routes/user.router";
-import cors from "cors"
+import cors from "cors";
+import { env } from "./utils/myVariables";
 import customerRouter from "./routes/customer.router";
 
 const app = express();
 
-app.use(cors())
+app.use(cors());
 
 app.use(express.json());
 
+const MONGODB = env.MONGODB;
+
 const connectDB = async () => {
   try {
-    await mongoose.connect(
-      "mongodb+srv://thientai074:thientai077@cluster0.fn5pj.mongodb.net/Convert?authSource=admin&replicaSet=atlas-y3ya0g-shard-0&w=majority&readPreference=primary&retryWrites=true&ssl=true"
-    );
-    console.log("Ket noi Database thanh cong !!!");
+    await mongoose.connect(MONGODB);
   } catch (error) {
-    console.error(error);
+    throw Error("Ket noi Database that bai !!!");
   }
 };
-connectDB();
+connectDB().then(() => {
+  console.log("Ket noi Database thanh cong !!!");
+});
 
 app.use("/api", authRouter);
 app.use("/api", userRouter);

@@ -2,9 +2,9 @@ POST  http://localhost:4000/api/user
 Content-Type: application/json
 
 {
-    "email": "Nam1",
-    "password": "Nam1",
-    "name": "Nam1"
+    "email": "Quoc",
+    "password": "Quoc",
+    "fullName": "Quoc"
 }
 
 ###
@@ -12,22 +12,22 @@ POST  http://localhost:4000/api/login
 Content-Type: application/json
 
 {
-    "email": "Nam",
-    "password": "Nam"
+    "email": "Quoc",
+    "password": "Quoc"
 }
 
 ###
-GET http://localhost:4000/api/get
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODM0ODE4ODI1YzliZjZmODI3MGIwYyIsImlhdCI6MTY1Mjc3NDc1MSwiZXhwIjoxNjUyNzc1NjUxfQ.1tjdTnwiI1MxKJ4xauRwR4ymTmIszH2NHvyKcq4DR0s
+GET http://localhost:4000/api/user
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGIzMDdlZjRhODMxZjY5YmNiNDE2OCIsInJvbGUiOiJ1c2VyIiwiZW1haWwiOiJNaW5oIiwiaWF0IjoxNjUzMjg5MjgwLCJleHAiOjE2NTMzNzU2ODB9.XIs2thlZiNpxY0XbyUJKbitFq6pLyyTzeqMLbNMl7I4
 
 ###
 DELETE  http://localhost:4000/api/user/62847e8c71ad96fa48dcbd67
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODQ3ZThjNzFhZDk2ZmE0OGRjYmQ2NyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjUyODUwNTI5fQ.94u9y5_QnEr5AGV25tz6SqgZdVQFHU9fZOTkqt_3PUg
 
 ###
-PUT http://localhost:4000/api/user/6285a55adbc333d1f2fceed3
+PUT http://localhost:4000/api/user/628afa61ad075e6a46d3cb4b
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODVhNTVhZGJjMzMzZDFmMmZjZWVkMyIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNjUyOTI1ODQ1LCJleHAiOjE2NTMwMTIyNDV9.5RmI2FUhyVkWGF4KUVIxGFnsXVjXEZL94likC6Zs-bY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGE4ODU0ODk2NjlkOTk3YmQ1ZWY0MCIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiTWFuaCIsImlhdCI6MTY1MzI3NTI2NSwiZXhwIjoxNjUzMzYxNjY1fQ.kqj5wh5G6BaXpqjSmJRW8BeLKz16CXVP28S2jBqhz-0
 {
     "email": "Ha",
     "name": "Ha"
@@ -44,7 +44,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:4000/api/user/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGFlMDRjZWMxMDAzNzk4Y2IzNjA0OSIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiTmFtIiwiaWF0IjoxNjUzMjY4ODk0LCJleHAiOjE2NTMzNTUyOTR9.wmx3v7Vb5vD36QBnqoeNAreGYvyw3MJZ5Ww5muTfC3M
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGIzNzg5ODU4NTE2NzUwNGRjNTc0NyIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiUXVvYyIsImlhdCI6MTY1MzI5MDkxNywiZXhwIjoxNjUzMzc3MzE3fQ.nmtebfDjxO-2xRLUny-Dep6PBun9I2cG0jXUPnnkcYY
 
 ###
 PUT http://localhost:4000/api/user/62847faa7dd04b76b0bc4897
@@ -59,21 +59,22 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODQ3ZmFhN
 ###
 POST http://localhost:4000/api/customer
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODVjYjg1N2YzYTYyNmE0ZDdlYzFkYyIsInJvbGUiOiJ1c2VyIiwiZW1haWwiOiJIYXkiLCJpYXQiOjE2NTI5MzU1NjIsImV4cCI6MTY1MzAyMTk2Mn0.vraaf2SN6xSfd9UyCcj-1jLkMRG_5fW5nYDtM7-bvLc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGIzNzg5ODU4NTE2NzUwNGRjNTc0NyIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiUXVvYyIsImlhdCI6MTY1MzI5MDkxNywiZXhwIjoxNjUzMzc3MzE3fQ.nmtebfDjxO-2xRLUny-Dep6PBun9I2cG0jXUPnnkcYY
 
 {
-    "fullname": "alo6",
-    "phone": "09766466868"  
+   
+    "phone": "0937664668d683"  
 }
 
 ###
 GET http://localhost:4000/api/customer
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODVkMDBkNWZmYmJhMTAxNjU1OWI1NCIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiYWRtaW4iLCJpYXQiOjE2NTI5MzY3NTMsImV4cCI6MTY1MzAyMzE1M30.lDvxrBeW1KyJOk3MdxHJkpNM71SQJlnXcEsg79qb50E
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGIzMDdlZjRhODMxZjY5YmNiNDE2OCIsInJvbGUiOiJ1c2VyIiwiZW1haWwiOiJNaW5oIiwiaWF0IjoxNjUzMjg5MjgwLCJleHAiOjE2NTMzNzU2ODB9.XIs2thlZiNpxY0XbyUJKbitFq6pLyyTzeqMLbNMl7I4
 ###
-delete http://localhost:4000/api/customer/6285cc04b3befa2069a1daf7
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODVjYjg1N2YzYTYyNmE0ZDdlYzFkYyIsInJvbGUiOiJ1c2VyIiwiZW1haWwiOiJIYXkiLCJpYXQiOjE2NTI5MzY4ODUsImV4cCI6MTY1MzAyMzI4NX0.8jN8TcA8aYR0m3SUQK9cpRDgoyekYnJkl5w4m2MEiT8
+delete http://localhost:4000/api/customer/6285cb987f3a626a4d7ec1df
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGE4ODU0ODk2NjlkOTk3YmQ1ZWY0MCIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiTWFuaCIsImlhdCI6MTY1MzI3OTI0OSwiZXhwIjoxNjUzMzY1NjQ5fQ.jj1KSk17pRdmngQxvboFdk-zukbkB0yo1S0cDtSXSAY
 ###
-PUT http://localhost:4000/api/customer/6285a476c1a243d74a3751e5
+PUT http://localhost:4000/api/customer/6285cc876e54829216c3158a
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGE4ODU0ODk2NjlkOTk3YmQ1ZWY0MCIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiTWFuaCIsImlhdCI6MTY1MzI3OTI0OSwiZXhwIjoxNjUzMzY1NjQ5fQ.jj1KSk17pRdmngQxvboFdk-zukbkB0yo1S0cDtSXSAY
 Content-Type: application/json;
 
 {

@@ -6,7 +6,7 @@ export type TokenType = {
 
 export type UserType = {
   _id: string;
-  name: string;
+  fullName: string;
   email: string;
   password: string;
   role: string;

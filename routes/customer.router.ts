@@ -26,6 +26,10 @@ router.put(
 router.post("/customer", verifyToken, customerController.createCustomer);
 
 // Find all customers
-router.get("/customer", verifyTokenAndAdmin, customerController.findAllUser);
+router.get(
+  "/customer",
+  verifyTokenAndAuthorization,
+  customerController.findAllUser
+);
 
 export default router;

@@ -1,7 +1,7 @@
 import { Document, Schema, Types, model } from "mongoose";
 
 interface UserType extends Document {
-  name: string;
+  fullName: string;
   email: string;
   password: string;
   role: string;
@@ -11,7 +11,7 @@ interface UserType extends Document {
 
 const UserSchema = new Schema<UserType>(
   {
-    name: { type: String },
+    fullName: { type: String },
     email: { type: String },
     password: { type: String },
     role: { type: String, enum: ["user", "admin"], default: "user" },
@@ -21,4 +21,4 @@ const UserSchema = new Schema<UserType>(
   { timestamps: true }
 );
 
-export const User = model<UserType>("User", UserSchema);
+export const User = model<UserType>("users", UserSchema);
