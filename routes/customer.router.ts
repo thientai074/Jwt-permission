@@ -11,7 +11,7 @@ import customerController from "../controlllers/customer.controller";
 // delete Customer
 router.delete(
   "/customer/:id",
-  verifyTokenAndAuthorization,
+  verifyTokenAndAdmin,
   customerController.deleteCustomer
 );
 

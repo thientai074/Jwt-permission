@@ -2,8 +2,6 @@ import { Request, Response } from "express";
 import { TokenType } from "../types/types";
 import AuthService from "../services/auth.service";
 
-let refreshTokens: TokenType[] = [];
-
 class authController {
   // Login User
   async login(req: Request, res: Response) {
@@ -15,17 +13,21 @@ class authController {
           message: "Missing email or password",
         });
       }
+
+      if (!email.includes("@gmail.com")) {
+        return res.json({
+          success: false,
+          message: "Email must includes @gmail.com",
+        });
+      }
       const user = await AuthService.login(email, password);
       res.json({
-        success: true,
-        user,
-        message: "Logged in successfully",
+        data: user,
       });
-    } catch (error: any) {
-    
+    } catch (error) {
       return res.json({
         success: false,
-        message: error.message,
+        message: "Login Failed",
       });
     }
   }

@@ -12,17 +12,32 @@ class userController {
         message: "Missing name or email or password",
       });
     }
+
+    if (fullName.length < 5) {
+      return res.json({
+        success: false,
+        message: "Full Name must has at least 5 letters",
+      });
+    }
+
+    if (!email.includes("@gmail.com")) {
+      return res.json({
+        success: false,
+        message: "Email must includes @gmail.com",
+      });
+    }
+
     try {
       const user = await UserService.create(fullName, email, password);
       res.json({
         success: true,
         message: "Created user successfully",
-        user,
+        data: user,
       });
     } catch (error) {
       return res.json({
         success: false,
-        message: error,
+        message: "Createing user failed",
       });
     }
   }
@@ -33,13 +48,13 @@ class userController {
       const users = await UserService.getUsers();
       res.json({
         success: true,
-        users,
+        data: users,
         message: "Getted all users successfully",
       });
-    } catch (error) {
+    } catch (error: any) {
       return res.json({
         success: false,
-        message: error,
+        message: "Getting all users failed",
       });
     }
   }
@@ -51,13 +66,13 @@ class userController {
       const user = await UserService.findUser(userId);
       res.json({
         success: true,
-        user,
+        data: user,
         message: "Getted user successfully",
       });
     } catch (error) {
       res.json({
         success: false,
-        message: error,
+        message: "Getting user failed",
       });
     }
   }
@@ -69,13 +84,13 @@ class userController {
       const deletedUser = await UserService.delete(userId);
       res.json({
         success: true,
-        deletedUser,
+        data: deletedUser,
         message: "Deleted user successfully",
       });
     } catch (error) {
       res.json({
         success: false,
-        message: error,
+        message: "Deleting user failed",
       });
     }
   }
@@ -94,7 +109,7 @@ class userController {
     } catch (error) {
       res.json({
         success: false,
-        message: error,
+        message: "Updating user failed",
       });
     }
   }

@@ -12,16 +12,25 @@ class AuthService {
     try {
       const jwtAccessToken = env.JWT_ACCESS_KEY;
       const user = await User.findOne({ email: email });
+      const userInfor = await User.findOne({ email: email }).select(
+        "-password"
+      );
 
       if (!user) {
-        throw new Error("Incorrect email or password");
+        return {
+          success: false,
+          message: "Incorrect email or password",
+        };
       }
 
       const validPassword =
         user && (await bcrypt.compare(password, user.password));
 
       if (!validPassword) {
-        throw new Error("Incorrect email or password");
+        return {
+          success: false,
+          message: "Incorrect email or password",
+        };
       }
 
       if (user && validPassword) {
@@ -36,10 +45,17 @@ class AuthService {
           jwtAccessToken,
           { expiresIn: "1d" }
         );
-        return { accessToken, user };
+        return {
+          success: true,
+          data: { accessToken, userInfor },
+          message: "Logged in successfully",
+        };
       }
     } catch (error) {
-      throw new Error("Login Failure");
+      return {
+        success: false,
+        message: "Login failure",
+      };
     }
   }
 }

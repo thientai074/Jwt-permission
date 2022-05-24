@@ -2,9 +2,9 @@ POST  http://localhost:4000/api/user
 Content-Type: application/json
 
 {
-    "email": "Quoc",
-    "password": "Quoc",
-    "fullName": "Quoc"
+    "email": "hung123@gmail.com",
+    "password": "Hun",
+    "fullName": "Hungg"
 }
 
 ###
@@ -12,8 +12,8 @@ POST  http://localhost:4000/api/login
 Content-Type: application/json
 
 {
-    "email": "Manh",
-    "password": "Manh"
+    "email": "hung123@gmail.com",
+    "password": "Hun"
 }
 
 ###
@@ -44,7 +44,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:4000/api/user/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGIzNzg5ODU4NTE2NzUwNGRjNTc0NyIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiUXVvYyIsImlhdCI6MTY1MzI5MDkxNywiZXhwIjoxNjUzMzc3MzE3fQ.nmtebfDjxO-2xRLUny-Dep6PBun9I2cG0jXUPnnkcYY
+Authorization: Bearer eyJlhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGIzNzg5ODU4NTE2NzUwNGRjNTc0NyIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiUXVvYyIsImlhdCI6MTY1MzI5MDkxNywiZXhwIjoxNjUzMzc3MzE3fQ.nmtebfDjxO-2xRLUny-Dep6PBun9I2cG0jXUPnnkcYY
 
 ###
 PUT http://localhost:4000/api/user/62847faa7dd04b76b0bc4897
@@ -59,11 +59,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyODQ3ZmFhN
 ###
 POST http://localhost:4000/api/customer
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGIzMDdlZjRhODMxZjY5YmNiNDE2OCIsInJvbGUiOiJ1c2VyIiwiZW1haWwiOiJNaW5oIiwiaWF0IjoxNjUzMjkyMTE4LCJleHAiOjE2NTMzNzg1MTh9.dWdHeFBH0HllH-aljrimkSHxKrQd2TurCjNAN-lPSmM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyOGE4ODU0ODk2NjlkOTk3YmQ1ZWY0MCIsInJvbGUiOiJhZG1pbiIsImVtYWlsIjoiTWFuaCIsImlhdCI6MTY1MzM0NjI4OCwiZXhwIjoxNjUzNDMyNjg4fQ.ElVEp5s5KDatYI6qQDZm75KHmenVkX_ZjLMdXpD_Vrk
 
 {
    
-    "phone": "09668d5683"  
+    "phone": "0963353585683"  
 }
 
 ###

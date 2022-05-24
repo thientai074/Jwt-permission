@@ -5,6 +5,13 @@ class UserService {
   // create new User
   async create(fullName: string, email: string, password: string) {
     try {
+      const exitedUser = await User.findOne({ email: email });
+      if (exitedUser) {
+        return {
+          success: false,
+          message: "This email already exists",
+        };
+      }
       const salt = await bcrypt.genSalt(10);
       const hashed = await bcrypt.hash(password, salt);
 
@@ -17,7 +24,10 @@ class UserService {
       const user = await newUser.save();
       return user;
     } catch (error) {
-      throw Error("Error while creating user");
+      return {
+        success: false,
+        message: "Error while creating user",
+      };
     }
   }
 
@@ -27,7 +37,10 @@ class UserService {
       const users = await User.find();
       return users;
     } catch (error) {
-      throw Error("Error while getting users");
+      return {
+        success: false,
+        message: "Error while searching users",
+      };
     }
   }
 
@@ -37,7 +50,10 @@ class UserService {
       const user = await User.findById(userId);
       return user;
     } catch (error) {
-      throw Error("Error while finding user");
+      return {
+        success: false,
+        message: "Error while searching this user",
+      };
     }
   }
 
@@ -47,7 +63,10 @@ class UserService {
       const deletedUser = await User.findByIdAndDelete(userId);
       return deletedUser;
     } catch (error) {
-      throw Error("Error while deleting user");
+      return {
+        success: false,
+        message: "Error while deleting this user",
+      };
     }
   }
 
@@ -63,7 +82,10 @@ class UserService {
       );
       return updatedUser;
     } catch (error) {
-      throw Error("Error while updating user");
+      return {
+        success: false,
+        message: "Error while updating this user",
+      };
     }
   }
 }

@@ -18,4 +18,10 @@ export type DecodeType = {
   id: string;
   role: string;
   email: string;
-} 
+};
+
+export type CustomerType = {
+  _id: string;
+  user: any;
+  phone: string;
+};

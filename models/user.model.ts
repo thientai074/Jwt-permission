@@ -11,9 +11,20 @@ interface UserType extends Document {
 
 const UserSchema = new Schema<UserType>(
   {
-    fullName: { type: String },
-    email: { type: String },
-    password: { type: String },
+    fullName: { type: String, minLength: 5, required: true },
+    email: {
+      type: String,
+      minLength: 5,
+      unique: true,
+      required: true,
+      validate: {
+        validator: function (v: any) {
+          return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
+        },
+        message: "Please enter a valid email",
+      },
+    },
+    password: { type: String, required: true },
     role: { type: String, enum: ["user", "admin"], default: "user" },
     docVersion: { type: Number, default: 0 },
     isDisabled: { type: Boolean, default: false },

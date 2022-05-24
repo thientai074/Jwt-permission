@@ -4,12 +4,16 @@ import mongoose from "mongoose";
 import authRouter from "./routes/auth.route";
 import userRouter from "./routes/user.router";
 import cors from "cors";
+import morgan from "morgan";
+import helmet from "helmet";
 import { env } from "./utils/myVariables";
 import customerRouter from "./routes/customer.router";
 
 const app = express();
 
 app.use(cors());
+app.use(helmet());
+app.use(morgan('combined'))
 
 app.use(express.json());
 
@@ -19,7 +23,7 @@ const connectDB = async () => {
   try {
     await mongoose.connect(MONGODB);
   } catch (error) {
-    throw Error("Ket noi Database that bai !!!");
+    console.log("Ket noi Database that bai !!!");
   }
 };
 connectDB().then(() => {

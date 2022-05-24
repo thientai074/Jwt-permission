@@ -16,7 +16,7 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
 
   try {
     const jwtAccessToken = env.JWT_ACCESS_KEY;
-    jwt.verify(token, jwtAccessToken, (err: Error, decoded: DecodeType) => {
+    jwt.verify(token, jwtAccessToken, (err: any, decoded: DecodeType) => {
       if (err) {
         return res.json("Internal Server Error");
       } else {
@@ -80,7 +80,7 @@ const verifyTokenAndAuthorization = (
 
   try {
     const jwtAccessToken = env.JWT_ACCESS_KEY;
-    jwt.verify(token, jwtAccessToken, (err: Error, decoded: any) => {
+    jwt.verify(token, jwtAccessToken, (err: any, decoded: any) => {
       if (err) {
         return res.json("Internal Server Error");
       } else {

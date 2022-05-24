@@ -12,7 +12,13 @@ const CustomerSchema = new Schema<CustomerType>(
       type: Schema.Types.ObjectId,
       ref: "users",
     },
-    phone: { type: String },
+    phone: { type: String,    validate: {
+      validator: function (v: any) {
+        return /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/.test(v);
+      },
+      message: "Please enter a valid phone number",
+    }, },
+    
   },
   { timestamps: true }
 );

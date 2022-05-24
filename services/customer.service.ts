@@ -12,10 +12,16 @@ class CustomerService {
         const savedCustomer = await newCustomer.save();
         return savedCustomer;
       } else {
-        throw Error("Has not logged in yet !!!");
+        return {
+          success: false,
+          message: "Has not logged in yet !!!",
+        };
       }
     } catch (error) {
-      throw Error("Error while creating new customer");
+      return {
+        success: false,
+        message: "Error while creating new customer",
+      };
     }
   }
 
@@ -29,7 +35,10 @@ class CustomerService {
 
       return customers;
     } catch (error) {
-      throw new Error("Error while searching customers");
+      return {
+        success: false,
+        message: "Error while searching new customer",
+      };
     }
   }
 
@@ -39,7 +48,10 @@ class CustomerService {
       const deletedCustomer = await Customer.findByIdAndDelete(userId);
       return deletedCustomer;
     } catch (error) {
-      throw Error("Error while deleting customer");
+      return {
+        success: false,
+        message: "Error while deleting new customer",
+      };
     }
   }
 
@@ -55,7 +67,10 @@ class CustomerService {
       );
       return updatedCustomer;
     } catch (error) {
-      throw Error("Error while updating customer");
+      return {
+        success: false,
+        message: "Error while updating new customer",
+      };
     }
   }
 }

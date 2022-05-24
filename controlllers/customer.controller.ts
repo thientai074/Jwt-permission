@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { Customer } from "../models/customer.model";
 import CustomerService from "../services/customer.service";
 
 class customerController {
@@ -7,6 +6,14 @@ class customerController {
   async createCustomer(req: Request, res: Response) {
     try {
       const { phone } = req.body;
+      const reg = new RegExp("^[0-9]+$");
+      const testOnlyNumberInPhone = reg.test(phone);
+      if (!testOnlyNumberInPhone) {
+        return res.json({
+          success: false,
+          message: "Invalid phone number",
+        });
+      }
       const decoded = res.locals.jwt;
       if (!decoded) {
         return res.json({ success: false, message: "You have to login" });
@@ -15,13 +22,13 @@ class customerController {
       const newCustomer = await CustomerService.create(decoded, phone);
       res.json({
         success: true,
-        newCustomer,
+        data: newCustomer,
         message: "Created customer successfully",
       });
     } catch (error) {
       return res.json({
         success: false,
-        message: error,
+        message: "Creating customer failed",
       });
     }
   }
@@ -32,13 +39,13 @@ class customerController {
       const customers = await CustomerService.findAllCustomers();
       res.json({
         success: true,
-        customers,
+        data: customers,
         message: "Getted all customers successfully",
       });
-    } catch (error: any) {
+    } catch (error) {
       return res.json({
         success: false,
-        message: error.message,
+        message: "Getting all customers successfully failed",
       });
     }
   }
@@ -50,13 +57,13 @@ class customerController {
       const deletedCustomer = await CustomerService.delete(userId);
       res.json({
         success: true,
-        deletedCustomer,
+        data: deletedCustomer,
         message: "This Customer has been deleted !!!",
       });
     } catch (error) {
       return res.json({
         success: false,
-        message: error,
+        message: "Deleting customer failed",
       });
     }
   }
@@ -69,13 +76,13 @@ class customerController {
       const updatedCustomer = await CustomerService.update(userId, body);
       res.json({
         success: true,
-        updatedCustomer,
+        data: updatedCustomer,
         message: "Updated customer successfully",
       });
     } catch (error) {
       return res.json({
         success: false,
-        message: error,
+        message: "Updating customer failed",
       });
     }
   }
