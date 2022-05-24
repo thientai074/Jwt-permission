@@ -51,7 +51,7 @@ class userController {
         data: users,
         message: "Getted all users successfully",
       });
-    } catch (error: any) {
+    } catch (error) {
       return res.json({
         success: false,
         message: "Getting all users failed",
