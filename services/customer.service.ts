@@ -10,7 +10,11 @@ class CustomerService {
           phone,
         });
         const savedCustomer = await newCustomer.save();
-        return savedCustomer;
+        return {
+          success: true,
+          data: savedCustomer,
+          message: "Created customer successfully",
+        };
       } else {
         return {
           success: false,
@@ -32,8 +36,11 @@ class CustomerService {
         "user",
         "email fullName"
       );
-
-      return customers;
+      return {
+        success: true,
+        data: customers,
+        message: "Getted customers successfully",
+      };
     } catch (error) {
       return {
         success: false,
@@ -46,7 +53,11 @@ class CustomerService {
   async delete(userId: string) {
     try {
       const deletedCustomer = await Customer.findByIdAndDelete(userId);
-      return deletedCustomer;
+      return {
+        success: true,
+        data: deletedCustomer,
+        message: "Deleted this customer successfully",
+      };
     } catch (error) {
       return {
         success: false,
@@ -65,7 +76,11 @@ class CustomerService {
         },
         { new: true }
       );
-      return updatedCustomer;
+      return {
+        success: true,
+        data: updatedCustomer,
+        message: "Updated this customer successfully",
+      };
     } catch (error) {
       return {
         success: false,

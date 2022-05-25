@@ -3,6 +3,7 @@ import express from "express";
 import mongoose from "mongoose";
 import authRouter from "./routes/auth.route";
 import userRouter from "./routes/user.router";
+import roleRouter from "./routes/role.router";
 import cors from "cors";
 import morgan from "morgan";
 import helmet from "helmet";
@@ -13,7 +14,7 @@ const app = express();
 
 app.use(cors());
 app.use(helmet());
-app.use(morgan('combined'))
+app.use(morgan("combined"));
 
 app.use(express.json());
 
@@ -33,6 +34,7 @@ connectDB().then(() => {
 app.use("/api", authRouter);
 app.use("/api", userRouter);
 app.use("/api", customerRouter);
+app.use("/api", roleRouter);
 
 const PORT = 4000;
 

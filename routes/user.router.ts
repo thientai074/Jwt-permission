@@ -1,22 +1,28 @@
 import express from "express";
 const router = express.Router();
-const {
-  verifyTokenAndAuthorization,
-  verifyTokenAndAdmin,
-} = require("../middlewares/auth.middleware");
+const { rightToAction } = require("../middlewares/auth.middleware");
+
 import userController from "../controlllers/user.controller";
 
 // Find User
-router.get("/user/:id", verifyTokenAndAuthorization, userController.findUser);
+router.get("/user/:id", rightToAction("get-users"), userController.findUser);
 
 // // Update User
-router.put("/user/:id", verifyTokenAndAuthorization, userController.updateUser);
+router.put(
+  "/user/:id",
+  rightToAction("update-users"),
+  userController.updateUser
+);
 
 // // Delete User
-router.delete("/user/:id", verifyTokenAndAdmin, userController.removeUser);
+router.delete(
+  "/user/:id",
+  rightToAction("delete-users"),
+  userController.removeUser
+);
 
 // Get all Users
-router.get("/user", verifyTokenAndAdmin, userController.getAllUsers);
+router.get("/user", rightToAction("get-users"), userController.getAllUsers);
 
 // Create User
 router.post("/user", userController.createUser);

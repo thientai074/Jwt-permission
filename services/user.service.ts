@@ -1,8 +1,10 @@
 import bcrypt from "bcryptjs";
 import { User } from "../models/user.model";
+import { Role } from "../models/role.model";
 
 class UserService {
   // create new User
+
   async create(fullName: string, email: string, password: string) {
     try {
       const exitedUser = await User.findOne({ email: email });
@@ -22,7 +24,11 @@ class UserService {
       });
 
       const user = await newUser.save();
-      return user;
+      return {
+        success: true,
+        data: user,
+        message: "Created user successfully",
+      };
     } catch (error) {
       return {
         success: false,
@@ -34,8 +40,21 @@ class UserService {
   //  Get All Users
   async getUsers() {
     try {
-      const users = await User.find();
-      return users;
+      const users = await User.aggregate([
+        {
+          $lookup: {
+            from: "roles",
+            localField: "role",
+            foreignField: "roleType",
+            as: "role",
+          },
+        },
+      ]);
+      return {
+        success: true,
+        data: users,
+        message: "Getted all users successfully",
+      };
     } catch (error) {
       return {
         success: false,
@@ -48,7 +67,11 @@ class UserService {
   async findUser(userId: string) {
     try {
       const user = await User.findById(userId);
-      return user;
+      return {
+        success: true,
+        data: user,
+        message: "Getted user successfully",
+      };
     } catch (error) {
       return {
         success: false,
@@ -61,7 +84,11 @@ class UserService {
   async delete(userId: string) {
     try {
       const deletedUser = await User.findByIdAndDelete(userId);
-      return deletedUser;
+      return {
+        success: true,
+        data: deletedUser,
+        message: "Deleted user successfully",
+      };
     } catch (error) {
       return {
         success: false,
@@ -80,7 +107,11 @@ class UserService {
         },
         { new: true }
       );
-      return updatedUser;
+      return {
+        success: true,
+        data: updatedUser,
+        message: "Updated user successfully",
+      };
     } catch (error) {
       return {
         success: false,

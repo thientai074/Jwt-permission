@@ -1,43 +1,45 @@
-import { User } from "../models/user.model";
 import { Request, Response } from "express";
 import UserService from "../services/user.service";
 
 class userController {
   // create User
   async createUser(req: Request, res: Response) {
-    const { fullName, email, password } = req.body;
-    if (!fullName || !email || !password) {
-      return res.json({
-        success: false,
-        message: "Missing name or email or password",
-      });
-    }
-
-    if (fullName.length < 5) {
-      return res.json({
-        success: false,
-        message: "Full Name must has at least 5 letters",
-      });
-    }
-
-    if (!email.includes("@gmail.com")) {
-      return res.json({
-        success: false,
-        message: "Email must includes @gmail.com",
-      });
-    }
-
     try {
+      const { fullName, email, password } = req.body;
+      if (!fullName || !email || !password) {
+        return res.json({
+          success: false,
+          message: "Missing name or email or password",
+        });
+      }
+
+      if (fullName.length < 5) {
+        return res.json({
+          success: false,
+          message: "Full Name must has at least 5 letters",
+        });
+      }
+
+      if (!email.includes("@gmail.com")) {
+        return res.json({
+          success: false,
+          message: "Email must includes @gmail.com",
+        });
+      }
+
       const user = await UserService.create(fullName, email, password);
-      res.json({
-        success: true,
-        message: "Created user successfully",
-        data: user,
-      });
+      if (user) {
+        res.json(user);
+      } else {
+        return res.json({
+          success: false,
+          message: "Can not create user",
+        });
+      }
     } catch (error) {
       return res.json({
         success: false,
-        message: "Createing user failed",
+        message: "Creating user failed",
       });
     }
   }
@@ -46,11 +48,7 @@ class userController {
   async getAllUsers(req: Request, res: Response) {
     try {
       const users = await UserService.getUsers();
-      res.json({
-        success: true,
-        data: users,
-        message: "Getted all users successfully",
-      });
+      res.json(users);
     } catch (error) {
       return res.json({
         success: false,
@@ -64,11 +62,7 @@ class userController {
     try {
       const userId = req.params.id;
       const user = await UserService.findUser(userId);
-      res.json({
-        success: true,
-        data: user,
-        message: "Getted user successfully",
-      });
+      res.json(user);
     } catch (error) {
       res.json({
         success: false,
@@ -82,11 +76,7 @@ class userController {
     try {
       const userId = req.params.id;
       const deletedUser = await UserService.delete(userId);
-      res.json({
-        success: true,
-        data: deletedUser,
-        message: "Deleted user successfully",
-      });
+      res.json(deletedUser);
     } catch (error) {
       res.json({
         success: false,
@@ -101,11 +91,7 @@ class userController {
       const body = req.body;
       const userId = req.params.id;
       const updatedUser = await UserService.update(userId, body);
-      res.json({
-        success: true,
-        updatedUser,
-        message: "Updated user successfully",
-      });
+      res.json(updatedUser);
     } catch (error) {
       res.json({
         success: false,

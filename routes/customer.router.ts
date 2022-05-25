@@ -1,34 +1,33 @@
 import express from "express";
 const router = express.Router();
-const {
-  verifyToken,
-  verifyTokenAndAuthorization,
-  verifyTokenAndAdmin,
-} = require("../middlewares/auth.middleware");
-
+const { rightToAction } = require("../middlewares/auth.middleware");
 import customerController from "../controlllers/customer.controller";
 
 // delete Customer
 router.delete(
   "/customer/:id",
-  verifyTokenAndAdmin,
+  rightToAction("delete-customer"),
   customerController.deleteCustomer
 );
 
 // update Customer
 router.put(
   "/customer/:id",
-  verifyTokenAndAuthorization,
+  rightToAction("update-customer"),
   customerController.updateCustomer
 );
 
 // Create Customer
-router.post("/customer", verifyToken, customerController.createCustomer);
+router.post(
+  "/customer",
+  rightToAction("create-customer"),
+  customerController.createCustomer
+);
 
 // Find all customers
 router.get(
   "/customer",
-  verifyTokenAndAdmin,
+  rightToAction("get-customers"),
   customerController.findAllUser
 );
 

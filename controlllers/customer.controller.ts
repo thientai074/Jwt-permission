@@ -6,6 +6,7 @@ class customerController {
   async createCustomer(req: Request, res: Response) {
     try {
       const { phone } = req.body;
+      // Phone Number belike 083729202
       const reg = new RegExp("^[0-9]+$");
       const testOnlyNumberInPhone = reg.test(phone);
       if (!testOnlyNumberInPhone) {
@@ -20,11 +21,7 @@ class customerController {
       }
 
       const newCustomer = await CustomerService.create(decoded, phone);
-      res.json({
-        success: true,
-        data: newCustomer,
-        message: "Created customer successfully",
-      });
+      res.json(newCustomer);
     } catch (error) {
       return res.json({
         success: false,
@@ -37,11 +34,7 @@ class customerController {
   async findAllUser(req: Request, res: Response) {
     try {
       const customers = await CustomerService.findAllCustomers();
-      res.json({
-        success: true,
-        data: customers,
-        message: "Getted all customers successfully",
-      });
+      res.json(customers);
     } catch (error) {
       return res.json({
         success: false,
@@ -55,11 +48,7 @@ class customerController {
     try {
       const userId = req.params.id;
       const deletedCustomer = await CustomerService.delete(userId);
-      res.json({
-        success: true,
-        data: deletedCustomer,
-        message: "This Customer has been deleted !!!",
-      });
+      res.json(deletedCustomer);
     } catch (error) {
       return res.json({
         success: false,
@@ -74,11 +63,7 @@ class customerController {
       const body = req.body;
       const userId = req.params.id;
       const updatedCustomer = await CustomerService.update(userId, body);
-      res.json({
-        success: true,
-        data: updatedCustomer,
-        message: "Updated customer successfully",
-      });
+      res.json(updatedCustomer);
     } catch (error) {
       return res.json({
         success: false,

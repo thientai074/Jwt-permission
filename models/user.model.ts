@@ -7,6 +7,7 @@ interface UserType extends Document {
   role: string;
   docVersion: number;
   isDisabled: boolean;
+  roleRights: any;
 }
 
 const UserSchema = new Schema<UserType>(
@@ -19,6 +20,7 @@ const UserSchema = new Schema<UserType>(
       required: true,
       validate: {
         validator: function (v: any) {
+          // Valid email belike hung@gmail.com
           return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(v);
         },
         message: "Please enter a valid email",
@@ -26,10 +28,14 @@ const UserSchema = new Schema<UserType>(
     },
     password: { type: String, required: true },
     role: { type: String, enum: ["user", "admin"], default: "user" },
-    docVersion: { type: Number, default: 0 },
+    roleRights: {
+      type: Schema.Types.ObjectId,
+      ref: "roles",
+    },
+
     isDisabled: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
 
-export const User = model<UserType>("users", UserSchema);
+export const User: any = model<UserType>("users", UserSchema);
